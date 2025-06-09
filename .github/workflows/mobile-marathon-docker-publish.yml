@@ -4,15 +4,15 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - master
+      - main
     paths:
-      - 'modules/mobile/marathon/safety/generator/**'
       - '.github/workflows/marathon-data-generator-publish.yml'
       - '!**/*.md'
+      - '**'
 
 env:
   REGISTRY: ghcr.io
-  ORGANISATION: futurecoders-org
+  ORGANISATION: veliryna
   GENERATOR_IMAGE_NAME: marathon-data-generator
 
 jobs:
@@ -42,7 +42,7 @@ jobs:
       - name: Build and push marathon data generator Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./modules/mobile/marathon/safety/generator
+          context: ./
           platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.ORGANISATION }}/${{ env.GENERATOR_IMAGE_NAME }}:latest

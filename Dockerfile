@@ -20,11 +20,6 @@ WORKDIR /app
 # Copy built binaries
 COPY --from=builder /producer ./producer
 COPY --from=builder /client ./client
-COPY entrypoint.sh /entrypoint.sh
-
-RUN chmod +x /entrypoint.sh
 
 EXPOSE 50051
 EXPOSE 8080
-
-CMD ["/entrypoint.sh"]
