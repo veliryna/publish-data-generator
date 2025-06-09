@@ -10,8 +10,8 @@ RUN go mod download
 COPY . .
 
 # Build server and client binaries
-RUN CGO_ENABLED=0 go build -o /producer ./producer/producer.go
-RUN CGO_ENABLED=0 go build -o /client ./client/client.go
+RUN go build -o /producer ./producer/producer.go
+RUN go build -o /client ./client/client.go
 
 FROM debian:bookworm-slim
 
